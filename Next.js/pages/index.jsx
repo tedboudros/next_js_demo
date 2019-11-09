@@ -1,13 +1,6 @@
 import { withRedux } from "../lib/redux";
+
 const IndexPage = () => {
-  /*const dispatch = useDispatch()
-  useInterval(() => {
-    dispatch({
-      type: 'TICK',
-      light: true,
-      lastUpdate: Date.now()
-    })
-  }, 1000)*/
   return <div>hello</div>;
 };
 

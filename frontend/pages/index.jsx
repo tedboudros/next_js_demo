@@ -1,8 +1,12 @@
 import { withRedux } from "../lib/redux";
+import Layout from "../components/layouts";
+import Authentication from "../components/authentication";
 
-const IndexPage = () => {
-  return <div>hello</div>;
-};
+const IndexPage = props => (
+  <Layout>
+    <Authentication />
+  </Layout>
+);
 
 IndexPage.getInitialProps = ({ reduxStore }) => {
   /*

@@ -1,10 +1,3 @@
-/*import React from 'react'
-import { useDispatch } from 'react-redux'
-import useInterval from '../lib/useInterval'
-import Clock from '../components/clock'
-import Counter from '../components/counter'
-*/
-
 import { withRedux } from "../lib/redux";
 const IndexPage = () => {
   /*const dispatch = useDispatch()

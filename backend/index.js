@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const PORT = 4000;
 
 const userRoutes = require("./routes/user");
+const postRoutes = require("./routes/post");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -21,7 +22,8 @@ connection.once("open", function() {
   console.log("Database connection successful");
 });
 
-app.use("/user", userRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/post", postRoutes);
 
 app.listen(PORT, function() {
   console.log("Server is running on Port: " + PORT);

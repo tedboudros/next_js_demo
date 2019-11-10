@@ -1,5 +1,4 @@
 import { Grid } from "@material-ui/core";
-
 import Register_Form from "./authentication_forms/register";
 import Login_Form from "./authentication_forms/login";
 

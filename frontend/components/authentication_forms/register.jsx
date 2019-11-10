@@ -34,11 +34,11 @@ export default class Register_Form extends Component {
 
   onSubmit(e) {
     axios
-      .post("http://localhost:4000/api/user/add", [
-        this.state.username,
-        this.state.email,
-        this.state.password
-      ])
+      .post("http://localhost:4000/api/user/add", {
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password
+      })
       .then((window.location = "/"));
   }
   render() {

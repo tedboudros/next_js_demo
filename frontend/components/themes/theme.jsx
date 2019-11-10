@@ -9,9 +9,6 @@ const body_theme = createMuiTheme({
     },
     secondary: {
       main: "#00909e"
-    },
-    buttons: {
-      main: "#c9d1d3"
     }
   }
 });

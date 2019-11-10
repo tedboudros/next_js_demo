@@ -8,52 +8,44 @@ import {
   FormControl,
   Card,
   CardContent,
-  Snackbar,
-  Icon,
-  IconButton,
-  Link
+  Icon
 } from "@material-ui/core";
-import ErrorIcon from "@material-ui/icons/Error";
-import axios from "axios";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import initialize from "../../utils/initialize";
+import actions from "../../redux/actions";
 
-export default class Register_Form extends Component {
+class Register_Form extends Component {
   constructor(props) {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.handleErrorClose = this.handleErrorClose.bind(this);
 
     this.state = {
       username: "",
       password: "",
-      email: "",
-      error: "",
-      showError: false
+      email: ""
     };
+  }
+  static getInitialProps(ctx) {
+    initialize(ctx);
   }
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
-  handleErrorClose() {
-    this.setState({ showError: false });
-  }
   onSubmit(e) {
-    axios
-      .post("http://localhost:4000/api/user/add", {
+    e.preventDefault();
+    this.props.register(
+      {
         username: this.state.username,
         email: this.state.email,
         password: this.state.password
-      })
-      .then(response => {
-        window.location = "/";
-      })
-      .catch(error => {
-        this.setState({ error: error.response.data.message, showError: true });
-      });
+      },
+      "register"
+    );
   }
   render() {
     return (
@@ -131,32 +123,8 @@ export default class Register_Form extends Component {
             </Container>
           </Card>
         </Box>
-        <style jsx>{`
-          .error {
-            background: #ff0000;
-          }
-        `}</style>
-        <Snackbar
-          className="error"
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right"
-          }}
-          open={this.state.showError}
-          onClose={this.handleErrorClose}
-          autoHideDuration={5000}
-          ContentProps={{
-            "aria-describedby": "message-id"
-          }}
-          aria-describedby="client-snackbar"
-          message={
-            <span id="client-snackbar">
-              <Icon className={ErrorIcon} />
-              {this.state.error}
-            </span>
-          }
-        />
       </div>
     );
   }
 }
+export default connect(state => state, actions)(Register_Form);

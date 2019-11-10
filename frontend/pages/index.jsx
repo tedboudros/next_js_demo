@@ -1,5 +1,11 @@
 import Layout from "../components/layouts";
+import { connect } from "react-redux";
+import initialize from "../utils/initialize";
 
-const IndexPage = props => <Layout></Layout>;
+const Index = props => <Layout></Layout>;
 
-export default IndexPage;
+Index.getInitialProps = function(ctx) {
+  initialize(ctx);
+};
+
+export default connect(state => state)(Index);

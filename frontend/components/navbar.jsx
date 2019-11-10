@@ -16,12 +16,12 @@ export default function Navbar() {
           {/*Grid Buttons (Login & Register*/}
           <Box ml="auto">
             <Grid container spacing={1}>
-              <Grid item>
+              <Grid item={true}>
                 <Button variant="contained" color="secondary">
                   Login
                 </Button>
               </Grid>
-              <Grid item>
+              <Grid item={true}>
                 <Button variant="contained" color="secondary">
                   Register
                 </Button>

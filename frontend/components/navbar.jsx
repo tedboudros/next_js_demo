@@ -4,7 +4,8 @@ import {
   Toolbar,
   Button,
   Box,
-  Grid
+  Grid,
+  Link
 } from "@material-ui/core";
 
 export default function Navbar() {
@@ -20,14 +21,18 @@ export default function Navbar() {
         <Box ml="auto">
           <Grid container spacing={1}>
             <Grid item>
-              <Button variant="contained" color="secondary">
-                Login
-              </Button>
+              <Link href="/signin">
+                <Button variant="contained" color="buttons">
+                  Login
+                </Button>
+              </Link>
             </Grid>
             <Grid item>
-              <Button variant="contained" color="secondary">
-                Register
-              </Button>
+              <Link href="/signup">
+                <Button variant="contained" color="buttons">
+                  Register
+                </Button>
+              </Link>
             </Grid>
           </Grid>
         </Box>

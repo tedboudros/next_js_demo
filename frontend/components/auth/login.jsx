@@ -1,4 +1,14 @@
-import { TextField, Box, Card, CardContent, CardHeader, Button, Container, FormControl } from "@material-ui/core";
+import {
+  TextField,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+  Container,
+  FormControl,
+  Link
+} from "@material-ui/core";
 
 const Login_Form = () => (
   <div>
@@ -7,7 +17,11 @@ const Login_Form = () => (
         <Container>
           {/*Card Header*/}
           <Box mt={5}>
-            <CardHeader align="center" title="Come back we are waiting for you..." subheader="Be creative" />
+            <CardHeader
+              align="center"
+              title="Come back we are waiting for you..."
+              subheader="Be creative"
+            />
           </Box>
 
           {/*Card Content*/}
@@ -15,12 +29,22 @@ const Login_Form = () => (
             <Box>
               <Box p={1}>
                 <FormControl fullWidth>
-                  <TextField label="Username" variant="outlined" color="primary" name="username" />
+                  <TextField
+                    label="Username"
+                    variant="outlined"
+                    color="secondary"
+                    name="username"
+                  />
                 </FormControl>
               </Box>
               <Box p={1}>
                 <FormControl fullWidth>
-                  <TextField label="Password" variant="outlined" color="primary" name="password" />
+                  <TextField
+                    label="Password"
+                    variant="outlined"
+                    color="secondary"
+                    name="password"
+                  />
                 </FormControl>
               </Box>
             </Box>

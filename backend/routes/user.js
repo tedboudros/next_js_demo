@@ -7,12 +7,14 @@ router.get("/:id", (req, res) => {
   User.getUserById(req.params.id, (err, user) => {
     if (err) {
       console.error(err);
-      res.status(400).send("Error while fetching user info.");
+      res
+        .status(400)
+        .json({ error: true, message: "Error while fetching user info" });
     } else {
       if (user) {
         res.json(user);
       } else {
-        res.status(400).send("User does not exist.");
+        res.status(400).json({ error: true, message: "User does not exist" });
       }
     }
   });
@@ -29,17 +31,19 @@ router.post("/add/", (req, res) => {
           User.createUser(newUser, err => {
             if (err) {
               console.error(err);
-              res.status(400).send("Error while creating user.");
+              res
+                .status(400)
+                .json({ error: true, message: "Error while creating user" });
             } else {
-              res.status(200).send("");
+              res.status(200).json({ error: false });
             }
           });
         } else {
-          res.status(400).send("Email is being used.");
+          res.status(400).json({ error: true, message: "Email is being used" });
         }
       });
     } else {
-      res.status(400).send("Username is being used.");
+      res.status(400).json({ error: true, message: "Username is being used" });
     }
   });
 });
@@ -48,7 +52,9 @@ router.post("/update/:id", (req, res) => {
   User.getUserById(req.params.id, (err, user) => {
     if (err) {
       console.error(err);
-      res.status(400).send("Error while fetching user info.");
+      res
+        .status(400)
+        .json({ error: true, message: "Error while fetching user info" });
     } else {
       /* Generates password hash beforehand because it can't be done inline with the user.save() due to async js --__-- */
       bcrypt.genSalt(10, function(err, salt) {
@@ -69,11 +75,14 @@ router.post("/update/:id", (req, res) => {
           user
             .save()
             .then(cb => {
-              res.status(200).send("");
+              res.status(200).json({ error: false });
             })
             .catch(err => {
               if (err) throw err;
-              res.status(400).send("Error when saving user changes.");
+              res.status(400).json({
+                error: true,
+                message: "Error when saving user changes"
+              });
             });
         });
       });
@@ -89,13 +98,17 @@ router.post("/authenticate/", (req, res) => {
       /* Then checks the password hash */
       User.comparePassword(req.body.password, user.password, (err, matches) => {
         if (matches) {
-          res.json({ matches: true });
+          res.status(200).json({ error: false });
         } else {
-          res.json({ matches: false, reason: "Password does not match." });
+          res
+            .status(400)
+            .json({ error: true, message: "Password does not match." });
         }
       });
     } else {
-      res.json({ matches: false, reason: "No user account with that email." });
+      res
+        .status(400)
+        .json({ error: true, message: "No user account with that email." });
     }
   });
 });

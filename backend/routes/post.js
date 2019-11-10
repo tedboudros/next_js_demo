@@ -6,12 +6,14 @@ router.get("/:id", (req, res) => {
   Post.getPostById(req.params.id, (err, post) => {
     if (err) {
       console.error(err);
-      res.status(400).send("Error while fetching post data.");
+      res
+        .status(400)
+        .json({ error: true, message: "Error while fetching post data." });
     } else {
       if (post) {
         res.json(post);
       } else {
-        res.status(400).send("Post does not exist.");
+        res.status(400).json({ error: true, message: "Post does not exist." });
       }
     }
   });
@@ -22,9 +24,11 @@ router.post("/add/", (req, res) => {
   Post.createPost(newPost, err => {
     if (err) {
       console.error(err);
-      res.status(400).send("Error while creating post.");
+      res
+        .status(400)
+        .json({ error: true, message: "Error while creating post." });
     } else {
-      res.status(200).send("");
+      res.status(200).json({ error: false });
     }
   });
 });
@@ -33,7 +37,9 @@ router.post("/update/:id", (req, res) => {
   Post.getPostById(req.params.id, (err, user) => {
     if (err) {
       console.error(err);
-      res.status(400).send("Error while fetching post data.");
+      res
+        .status(400)
+        .json({ error: true, message: "Error while fetching post data." });
     } else {
       /* If fields are different, it changes them accordingly then saves */
       if (req.body.title !== post.title) post.title = req.body.title;
@@ -47,11 +53,13 @@ router.post("/update/:id", (req, res) => {
       post
         .save()
         .then(cb => {
-          res.status(200).send("");
+          res.status(200).json({ error: false });
         })
         .catch(err => {
           if (err) throw err;
-          res.status(400).send("Error when saving post changes.");
+          res
+            .status(400)
+            .json({ error: true, message: "Error when saving post changes." });
         });
     }
   });

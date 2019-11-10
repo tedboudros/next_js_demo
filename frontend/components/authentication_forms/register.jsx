@@ -39,7 +39,14 @@ export default class Register_Form extends Component {
         email: this.state.email,
         password: this.state.password
       })
-      .then((window.location = "/"));
+      .then(() => {
+        window.location = "/";
+      })
+      .catch(error => {
+        if (error.response) {
+          console.log(error.response.data); // => the response payload
+        }
+      });
   }
   render() {
     return (

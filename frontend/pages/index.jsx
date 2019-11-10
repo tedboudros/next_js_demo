@@ -1,10 +1,15 @@
 import { withRedux } from "../lib/redux";
 import Layout from "../components/layouts";
 import Authentication from "../components/authentication";
+import { Box, Grid, Container } from "@material-ui/core";
 
 const IndexPage = props => (
   <Layout>
-    <Authentication />
+    <Container>
+      <Box mt="25%">
+        <Authentication />
+      </Box>
+    </Container>
   </Layout>
 );
 

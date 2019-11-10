@@ -1,31 +1,20 @@
-import { Input, Grid, TextField, Box, Card, CardActions, CardContent, Typography } from "@material-ui/core";
+import { Input, Grid, TextField, Box, Card, CardActions, CardContent, CardHeader, Typography, Button, Container, FormControl, InputLabel, InputAdornment } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-const Authentication = () => (
-  <div>
-    <Grid container direction="row" justify="center" alignItems="center">
-      <Card>
-        <CardContent>
-          <Box ml={5}>
-            <Typography variant="h5">Login</Typography>
-          </Box>
-          {/*INPUT FILDS*/}
-          <Grid container>
-            <Grid item xs={6}>
-              <Box m={5}>
-                <TextField id="outlined-basic" label="Username" margin="normal" variant="outlined" />
-              </Box>
-            </Grid>
+import Register_Form from "./authentication_forms/register";
+import Login_Form from "./authentication_forms/login";
 
-            <Grid item xs={6}>
-              <Box m={5}>
-                <TextField id="outlined-basic" label="Password" margin="normal" variant="outlined" />
-              </Box>
-            </Grid>
-          </Grid>
-          {/*INPUT FILDS ~END*/}
-        </CardContent>
-      </Card>
+const Authentication = props => (
+  <div>
+    <Grid container direction="row" justify="center" alignItems="center" spacing={2}>
+      {/*LOGIN FORM*/}
+      <Grid item xs={6}>
+        <Login_Form />
+      </Grid>
+      {/*Register FORM*/}
+      <Grid item xs={6}>
+        <Register_Form />
+      </Grid>
     </Grid>
   </div>
 );

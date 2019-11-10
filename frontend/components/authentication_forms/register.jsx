@@ -17,11 +17,11 @@ class Register_Form extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  handleChange(e) {
+  handleChange = event => {
     this.setState({
-      username: e.target.value
+      [event.target.id]: event.target.value
     });
-  }
+  };
   onSubmit(e) {
     e.preventDefault();
     axios.post("http://localhost:4000/api/user/add/", { username: this.state.username, email: this.state.email, password: this.state.password }).then(function(res) {
@@ -49,14 +49,14 @@ class Register_Form extends Component {
                       <Grid item={true} xs={6}>
                         <Box p={1}>
                           <FormControl fullWidth>
-                            <TextField label="Type your username" variant="outlined" color="primary" name="username" onChange={this.handleChange} />
+                            <TextField label="Type your username" variant="outlined" color="primary" name="username" id="username" onChange={this.handleChange} />
                           </FormControl>
                         </Box>
                       </Grid>
                       <Grid item={true} xs={6}>
                         <Box p={1}>
                           <FormControl fullWidth>
-                            <TextField label="Type your password" variant="outlined" color="primary" name="password" onChange={this.handleChange} />
+                            <TextField label="Type your password" variant="outlined" color="primary" name="password" id="username" onChange={this.handleChange} />
                           </FormControl>
                         </Box>
                       </Grid>

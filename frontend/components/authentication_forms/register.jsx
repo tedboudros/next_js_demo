@@ -1,14 +1,4 @@
-import {
-  Grid,
-  TextField,
-  Box,
-  CardHeader,
-  Button,
-  Container,
-  FormControl,
-  Card,
-  CardContent
-} from "@material-ui/core";
+import { Grid, TextField, Box, CardHeader, Button, Container, FormControl, Card, CardContent } from "@material-ui/core";
 import axios from "axios";
 import React, { Component } from "react";
 
@@ -37,13 +27,11 @@ export default class Register_Form extends Component {
         email: this.state.email,
         password: this.state.password
       })
-      .then(() => {
+      .then(response => {
         window.location = "/";
       })
       .catch(error => {
-        if (error.response) {
-          console.log(error.response.data); // => the response payload
-        }
+        console.log("Error: " + error.response.data.message);
       });
   }
   render() {
@@ -55,67 +43,42 @@ export default class Register_Form extends Component {
             <Container>
               {/*Card Header*/}
               <Box mt={5}>
-                <CardHeader
-                  align="center"
-                  title="Join our network now"
-                  subheader="Let's Start"
-                />
+                <CardHeader align="center" title="Join our network now" subheader="Let's Start" />
               </Box>
 
               {/*Card Content*/}
               <CardContent>
-                <form onSubmit={this.onSubmit}>
-                  {/*USERNAME & PASSWORD FIELDS*/}
-                  <Box>
-                    <Grid container>
-                      <Grid item xs={6}>
-                        <Box p={1}>
-                          <FormControl fullWidth>
-                            <TextField
-                              label="Type your username"
-                              variant="outlined"
-                              color="primary"
-                              name="username"
-                              onChange={this.onChange}
-                            />
-                          </FormControl>
-                        </Box>
-                      </Grid>
-                      <Grid item={true} xs={6}>
-                        <Box p={1}>
-                          <FormControl fullWidth>
-                            <TextField
-                              label="Type your password"
-                              variant="outlined"
-                              color="primary"
-                              type="password"
-                              name="password"
-                              onChange={this.onChange}
-                            />
-                          </FormControl>
-                        </Box>
-                      </Grid>
+                {/*USERNAME & PASSWORD FIELDS*/}
+                <Box>
+                  <Grid container>
+                    <Grid item xs={6}>
+                      <Box p={1}>
+                        <FormControl fullWidth>
+                          <TextField label="Type your username" variant="outlined" color="primary" name="username" onChange={this.onChange} />
+                        </FormControl>
+                      </Box>
                     </Grid>
-                  </Box>
-                  {/*EMAIL FIELD*/}
-                  <Box p={1}>
-                    <FormControl fullWidth>
-                      <TextField
-                        label="Type your email address"
-                        variant="outlined"
-                        color="primary"
-                        name="email"
-                        onChange={this.onChange}
-                      />
-                    </FormControl>
-                  </Box>
+                    <Grid item={true} xs={6}>
+                      <Box p={1}>
+                        <FormControl fullWidth>
+                          <TextField label="Type your password" variant="outlined" color="primary" type="password" name="password" onChange={this.onChange} />
+                        </FormControl>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Box>
+                {/*EMAIL FIELD*/}
+                <Box p={1}>
+                  <FormControl fullWidth>
+                    <TextField label="Type your email address" variant="outlined" color="primary" name="email" onChange={this.onChange} />
+                  </FormControl>
+                </Box>
 
-                  <Box m={1} mt={10} align="right">
-                    <Button variant="contained" type="submit" color="primary">
-                      Register
-                    </Button>
-                  </Box>
-                </form>
+                <Box m={1} mt={10} align="right">
+                  <Button variant="contained" onClick={this.onSubmit} color="primary">
+                    Register
+                  </Button>
+                </Box>
               </CardContent>
             </Container>
           </Card>

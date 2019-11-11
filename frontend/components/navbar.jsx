@@ -1,12 +1,4 @@
-import {
-  Typography,
-  AppBar,
-  Toolbar,
-  Button,
-  Box,
-  Grid,
-  Link
-} from "@material-ui/core";
+import { Typography, AppBar, Toolbar, Button, Box, Grid, Link } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
@@ -18,15 +10,15 @@ class Navbar extends Component {
     this.signOut = this.signOut.bind(this);
   }
   signOut(e) {
-    e.preventDefault();
     this.props.deauthenticate();
   }
   static getInitialProps(ctx) {
     initialize(ctx);
   }
   render() {
+    const { isAuthenticated, dispatch } = this.props;
     return (
-      <AppBar>
+      <AppBar position="fixed" style={{ zIndex: "1000000" }}>
         <Toolbar>
           {/*Title & Socials*/}
           <Box>
@@ -34,7 +26,7 @@ class Navbar extends Component {
           </Box>
 
           {/*Grid Buttons (Login & Register*/}
-          {this.props.isAuthenticated ? (
+          {!this.props.isAuthenticated ? (
             <Box ml="auto">
               <Grid container spacing={1}>
                 <Grid item>
@@ -55,12 +47,8 @@ class Navbar extends Component {
             </Box>
           ) : (
             <Box ml="auto">
-              <Button
-                variant="contained"
-                onClick={this.signOut}
-                color="secondary"
-              >
-                Login
+              <Button variant="contained" onClick={this.signOut} color="secondary">
+                SignOut
               </Button>
             </Box>
           )}

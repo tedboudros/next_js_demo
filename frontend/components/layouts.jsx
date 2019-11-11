@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Navbar from "./navbar";
+import LayoutDrafts from "./LayoutDrafts";
 import { connect } from "react-redux";
 import actions from "../redux/actions";
 import { Box } from "@material-ui/core";
@@ -11,8 +12,10 @@ const Layout = props => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <Navbar />
-    <Box mt="64px">{props.children}</Box>
+    <LayoutDrafts />
+    <Box mt="64px" style={{ marginLeft: "240px" }}>
+      {props.children}
+    </Box>
   </div>
 );
 

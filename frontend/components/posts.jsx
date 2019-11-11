@@ -1,4 +1,4 @@
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Card, CardContent, CardHeader } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
@@ -12,16 +12,12 @@ class Posts extends Component {
     initialize(ctx);
   }
   render() {
+    const { isAuthenticated } = this.props;
     return (
       <div>
-        {!this.props.isAuthenticated ? (
-          <Box>
-            
-            <Typography variant="h6">Forum.io</Typography>
-          </Box>
-        ) : (
-          ""
-        )}
+        <Box>
+          <h1>Hello World</h1>
+        </Box>
       </div>
     );
   }

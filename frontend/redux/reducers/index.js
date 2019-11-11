@@ -4,7 +4,7 @@ import postReducer from "./postReducer";
 
 const rootReducer = combineReducers({
   authentication: authReducer,
-  postReducer
+  post: postReducer
 });
 
 export default rootReducer;

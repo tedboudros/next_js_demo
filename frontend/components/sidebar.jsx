@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import { Drawer, AppBar, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+import {
+  Drawer,
+  AppBar,
+  Toolbar,
+  List,
+  Typography,
+  Divider,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Box
+} from "@material-ui/core";
 import Create from "@material-ui/icons/Create";
 import Home from "@material-ui/icons/Home";
 import Postadd from "@material-ui/icons/PostAdd";
@@ -9,8 +18,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div>
-        {/*Sidebar Component */}
-        {!this.props.isAuthenticated && (
+        {this.props.isAuthenticated ? (
           <Drawer style={{ width: "240px" }} variant="permanent">
             <div style={{ width: "240px" }} />
 
@@ -41,6 +49,8 @@ class Sidebar extends Component {
               </List>
             </Box>
           </Drawer>
+        ) : (
+          ""
         )}
       </div>
     );

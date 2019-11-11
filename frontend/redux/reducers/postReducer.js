@@ -1,10 +1,11 @@
 import { ADD_POST } from "../types";
 
-export default function(state = [], action) {
+const initialState = {
+  posts: []
+};
+export default (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
-      return [action.payload, ...state];
     default:
       return state;
   }
-}
+};

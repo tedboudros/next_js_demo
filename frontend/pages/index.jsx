@@ -7,17 +7,9 @@ import { Container, Box } from "@material-ui/core";
 
 class Index extends Component {
   render() {
-    const { isAuthenticated } = this.props;
     return (
       <Layout>
-        <Container maxWidth="md">
-          {!this.props.isAuthenticated && (
-            <Box pt={1} align="center">
-              <Posts />
-            </Box>
-          )}
-        </Container>
-        {this.props.isAuthenticated && <h1>Login to see posts</h1>}
+        <Posts />
       </Layout>
     );
   }

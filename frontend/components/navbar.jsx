@@ -1,4 +1,12 @@
-import { Typography, AppBar, Toolbar, Button, Box, Grid, Link } from "@material-ui/core";
+import {
+  Typography,
+  AppBar,
+  Toolbar,
+  Button,
+  Box,
+  Grid,
+  Link
+} from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
@@ -16,27 +24,23 @@ class Navbar extends Component {
     initialize(ctx);
   }
   render() {
-    const { isAuthenticated, dispatch } = this.props;
     return (
-      <AppBar position="fixed" style={{ zIndex: "1000000" }}>
+      <AppBar style={{ zIndex: 1000000 }}>
         <Toolbar>
-          {/*Title & Socials*/}
           <Box>
             <Typography variant="h6">Forum.io</Typography>
           </Box>
-
-          {/*Grid Buttons (Login & Register*/}
-          {!this.props.isAuthenticated ? (
+          {!this.props.auth.token ? (
             <Box ml="auto">
               <Grid container spacing={1}>
-                <Grid item="true">
+                <Grid item={true}>
                   <Link href="/signin">
                     <Button variant="contained" color="secondary">
                       Login
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item="true" value="true">
+                <Grid item={true} value="true">
                   <Link href="/signup">
                     <Button variant="contained" color="secondary">
                       Register
@@ -47,7 +51,11 @@ class Navbar extends Component {
             </Box>
           ) : (
             <Box ml="auto">
-              <Button variant="contained" onClick={this.signOut} color="secondary">
+              <Button
+                variant="contained"
+                onClick={this.signOut}
+                color="secondary"
+              >
                 SignOut
               </Button>
             </Box>

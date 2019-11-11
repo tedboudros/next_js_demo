@@ -1,16 +1,34 @@
 import React, { Component } from "react";
-import { Drawer, AppBar, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
+import {
+  Drawer,
+  AppBar,
+  Toolbar,
+  List,
+  Typography,
+  Divider,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Box
+} from "@material-ui/core";
 import Create from "@material-ui/icons/Create";
 import Home from "@material-ui/icons/Home";
 import Postadd from "@material-ui/icons/PostAdd";
+import { connect } from "react-redux";
+import initialize from "../utils/initialize";
+import actions from "../redux/actions";
+
 class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+  }
+  static getInitialProps(ctx) {
+    initialize(ctx);
+  }
   render() {
     return (
       <div>
-        {/*Sidebar Component */}
-        {!this.props.isAuthenticated && (
+        {!!this.props.auth.token ? (
           <Drawer style={{ width: "240px" }} variant="permanent">
             <div style={{ width: "240px" }} />
 
@@ -41,10 +59,12 @@ class Sidebar extends Component {
               </List>
             </Box>
           </Drawer>
+        ) : (
+          ""
         )}
       </div>
     );
   }
 }
 
-export default Sidebar;
+export default connect(state => state, actions)(Sidebar);

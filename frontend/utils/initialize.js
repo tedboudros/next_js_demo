@@ -8,7 +8,7 @@ export default function(ctx) {
       ctx.store.dispatch(actions.reauthenticate(getCookie("token", ctx.req)));
     }
   } else {
-    const token = ctx.store.getState().authentication.token;
+    const token = ctx.store.getState().auth.token;
 
     if (token && (ctx.pathname === "/signin" || ctx.pathname === "/signup")) {
       setTimeout(function() {

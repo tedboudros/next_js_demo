@@ -3,8 +3,8 @@ import authReducer from "./authReducer";
 import postReducer from "./postReducer";
 
 const rootReducer = combineReducers({
-  authentication: authReducer,
-  postReducer
+  auth: authReducer,
+  post: postReducer
 });
 
 export default rootReducer;

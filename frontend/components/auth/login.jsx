@@ -1,4 +1,14 @@
-import { TextField, Box, Card, CardContent, CardHeader, Button, Container, FormControl, Link } from "@material-ui/core";
+import {
+  TextField,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+  Container,
+  FormControl,
+  Link
+} from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../../utils/initialize";
@@ -42,7 +52,11 @@ class Login_Form extends Component {
             <Container>
               {/*Card Header*/}
               <Box mt={5}>
-                <CardHeader align="center" title="Come back we are waiting for you..." subheader="Be creative" />
+                <CardHeader
+                  align="center"
+                  title="Come back we are waiting for you..."
+                  subheader="Be creative"
+                />
               </Box>
 
               {/*Card Content*/}
@@ -50,18 +64,35 @@ class Login_Form extends Component {
                 <Box>
                   <Box p={1}>
                     <FormControl fullWidth>
-                      <TextField label="Email" variant="outlined" color="secondary" name="email" onChange={this.onChange} />
+                      <TextField
+                        label="Email"
+                        variant="outlined"
+                        color="secondary"
+                        name="email"
+                        onChange={this.onChange}
+                      />
                     </FormControl>
                   </Box>
                   <Box p={1}>
                     <FormControl fullWidth>
-                      <TextField label="Password" variant="outlined" color="secondary" name="password" type="password" onChange={this.onChange} />
+                      <TextField
+                        label="Password"
+                        variant="outlined"
+                        color="secondary"
+                        name="password"
+                        type="password"
+                        onChange={this.onChange}
+                      />
                     </FormControl>
                   </Box>
                 </Box>
 
                 <Box m={1} mt={10} align="right">
-                  <Button variant="contained" onClick={this.onSubmit} color="primary">
+                  <Button
+                    variant="contained"
+                    onClick={this.onSubmit}
+                    color="primary"
+                  >
                     Login
                   </Button>
                 </Box>

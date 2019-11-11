@@ -13,7 +13,6 @@ const register = ({ username, email, password }, type) => {
       .post(`${API}/${type}`, { username, email, password })
       .then(response => {
         Router.push("/signin");
-        console.log(response.data.message);
       })
       .catch(error => {
         if (error.response) {
@@ -41,7 +40,6 @@ const authenticate = ({ email, password }, type) => {
     axios
       .post(`${API}/${type}`, { email, password })
       .then(response => {
-        console.log(response.data.user.token);
         setCookie("token", response.data.token);
         Router.push("/");
         dispatch({

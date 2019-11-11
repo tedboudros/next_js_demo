@@ -10,9 +10,11 @@ import {
   Container,
   Avatar,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  Fab
 } from "@material-ui/core";
 import initialize from "../../utils/initialize";
+import { Navigation, Settings } from "@material-ui/icons";
 
 class CreatePost extends Component {
   constructor(props) {
@@ -72,12 +74,17 @@ class CreatePost extends Component {
                   />
                 </Box>
                 <Box mt={2} align="right">
-                  <ButtonGroup
-                    fullWidth
-                    aria-label="full width outlined button group"
+                  {/* Post Action Buttons */}
+                  <Fab
+                    onClick={this.onSubmit}
+                    variant="extended"
+                    size="small"
+                    color="primary"
+                    aria-label="add"
                   >
-                    <Button onClick={this.onSubmit}>POST</Button>
-                  </ButtonGroup>
+                    <Navigation />
+                    Post
+                  </Fab>
                 </Box>
               </CardContent>
             </Container>

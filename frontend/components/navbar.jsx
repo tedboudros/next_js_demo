@@ -25,12 +25,12 @@ class Navbar extends Component {
   }
   render() {
     return (
-      <AppBar>
+      <AppBar style={{ zIndex: 1000000 }}>
         <Toolbar>
           <Box>
             <Typography variant="h6">Forum.io</Typography>
           </Box>
-          {!this.props.isAuthenticated ? (
+          {!this.props.auth.token ? (
             <Box ml="auto">
               <Grid container spacing={1}>
                 <Grid item={true}>

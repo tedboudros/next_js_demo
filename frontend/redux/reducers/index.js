@@ -3,7 +3,7 @@ import authReducer from "./authReducer";
 import postReducer from "./postReducer";
 
 const rootReducer = combineReducers({
-  authentication: authReducer,
+  auth: authReducer,
   post: postReducer
 });
 

@@ -44,7 +44,7 @@ class CreatePost extends Component {
   render() {
     return (
       <div>
-        {this.props.isAuthenticated ? (
+        {!!this.props.auth.token ? (
           <Box width={1} alignContent="center">
             <Card>
               <Container>

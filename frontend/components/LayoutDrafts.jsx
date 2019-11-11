@@ -17,7 +17,7 @@ class LayoutDraft extends Component {
       <div>
         <Navbar />
         <Sidebar />
-        {this.props.isAuthenticated ? (
+        {!!this.props.auth.token ? (
           <Box mt="64px" style={{ marginLeft: "240px" }}>
             {this.props.children}
           </Box>
@@ -28,9 +28,5 @@ class LayoutDraft extends Component {
     );
   }
 }
-
-LayoutDraft.getInitialProps = function(ctx) {
-  initialize(ctx);
-};
 
 export default connect(state => state)(LayoutDraft);

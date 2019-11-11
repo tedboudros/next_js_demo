@@ -32,7 +32,9 @@ class Sidebar extends Component {
                   <ListItemIcon>
                     <Home />
                   </ListItemIcon>
-                  <ListItemText primary="Home" />
+                  <Link href="/">
+                    <ListItemText primary="Home" />
+                  </Link>
                 </ListItem>
                 {/*Settings Icon */}
                 <ListItem button>

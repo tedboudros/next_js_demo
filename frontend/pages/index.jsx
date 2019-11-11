@@ -9,7 +9,9 @@ class Index extends Component {
   render() {
     return (
       <Layout>
-        <Posts />
+        <Container>
+          <Posts />
+        </Container>
       </Layout>
     );
   }

@@ -1,15 +1,4 @@
-import {
-  Grid,
-  TextField,
-  Box,
-  CardHeader,
-  Button,
-  Container,
-  FormControl,
-  Card,
-  CardContent,
-  Icon
-} from "@material-ui/core";
+import { Grid, TextField, Box, CardHeader, Button, Container, FormControl, Card, CardContent, Icon } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../../utils/initialize";
@@ -56,11 +45,7 @@ class Register_Form extends Component {
             <Container>
               {/*Card Header*/}
               <Box mt={5}>
-                <CardHeader
-                  align="center"
-                  title="Join our network now"
-                  subheader="Let's Start"
-                />
+                <CardHeader align="center" title="Join our network now" subheader="Let's Start" />
               </Box>
 
               {/*Card Content*/}
@@ -71,27 +56,14 @@ class Register_Form extends Component {
                     <Grid item xs={6}>
                       <Box p={1}>
                         <FormControl fullWidth>
-                          <TextField
-                            label="Type your username"
-                            variant="outlined"
-                            color="secondary"
-                            name="username"
-                            onChange={this.onChange}
-                          />
+                          <TextField label="Type your username" variant="outlined" color="secondary" name="username" onChange={this.onChange} />
                         </FormControl>
                       </Box>
                     </Grid>
                     <Grid item={true} xs={6}>
                       <Box p={1}>
                         <FormControl fullWidth>
-                          <TextField
-                            label="Type your password"
-                            variant="outlined"
-                            color="secondary"
-                            type="password"
-                            name="password"
-                            onChange={this.onChange}
-                          />
+                          <TextField label="Type your password" variant="outlined" color="secondary" type="password" name="password" onChange={this.onChange} />
                         </FormControl>
                       </Box>
                     </Grid>
@@ -100,22 +72,12 @@ class Register_Form extends Component {
                 {/*EMAIL FIELD*/}
                 <Box p={1}>
                   <FormControl fullWidth>
-                    <TextField
-                      label="Type your email address"
-                      variant="outlined"
-                      color="secondary"
-                      name="email"
-                      onChange={this.onChange}
-                    />
+                    <TextField label="Type your email address" variant="outlined" color="secondary" name="email" onChange={this.onChange} />
                   </FormControl>
                 </Box>
 
                 <Box m={1} mt={10} align="right">
-                  <Button
-                    variant="contained"
-                    onClick={this.onSubmit}
-                    color="primary"
-                  >
+                  <Button variant="contained" onClick={this.onSubmit} color="primary">
                     Register
                   </Button>
                 </Box>

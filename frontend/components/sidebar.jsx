@@ -1,19 +1,6 @@
 import React, { Component } from "react";
-import {
-  Drawer,
-  AppBar,
-  Toolbar,
-  List,
-  Typography,
-  Divider,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Box
-} from "@material-ui/core";
-import Create from "@material-ui/icons/Create";
-import Home from "@material-ui/icons/Home";
-import Postadd from "@material-ui/icons/PostAdd";
+import { Drawer, AppBar, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText, Box, Button } from "@material-ui/core";
+import { Create, Home, Lock } from "@material-ui/icons";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
 import actions from "../redux/actions";
@@ -21,6 +8,10 @@ import actions from "../redux/actions";
 class Sidebar extends Component {
   constructor(props) {
     super(props);
+    this.signOut = this.signOut.bind(this);
+  }
+  signOut(e) {
+    this.props.deauthenticate();
   }
   static getInitialProps(ctx) {
     initialize(ctx);
@@ -49,14 +40,14 @@ class Sidebar extends Component {
                   </ListItemIcon>
                   <ListItemText primary="Settings" />
                 </ListItem>
-                {/*Create Post */}
-                <ListItem button>
-                  <ListItemIcon>
-                    <Postadd />
-                  </ListItemIcon>
-                  <ListItemText primary="Create Post" />
-                </ListItem>
               </List>
+              {/*Logout Button*/}
+              <ListItem onClick={this.signOut} button>
+                <ListItemIcon>
+                  <Lock />
+                </ListItemIcon>
+                <ListItemText primary="Logout" />
+              </ListItem>
             </Box>
           </Drawer>
         ) : (

@@ -1,12 +1,4 @@
-import {
-  Typography,
-  AppBar,
-  Toolbar,
-  Button,
-  Box,
-  Grid,
-  Link
-} from "@material-ui/core";
+import { Typography, AppBar, Toolbar, Button, Box, Grid, Link } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
@@ -35,7 +27,7 @@ class Navbar extends Component {
               <Grid container spacing={1}>
                 <Grid item={true}>
                   <Link href="/signin">
-                    <Button variant="contained" color="secondary">
+                    <Button variant="contained" color="primary">
                       Login
                     </Button>
                   </Link>
@@ -50,15 +42,7 @@ class Navbar extends Component {
               </Grid>
             </Box>
           ) : (
-            <Box ml="auto">
-              <Button
-                variant="contained"
-                onClick={this.signOut}
-                color="secondary"
-              >
-                SignOut
-              </Button>
-            </Box>
+            ""
           )}
         </Toolbar>
       </AppBar>

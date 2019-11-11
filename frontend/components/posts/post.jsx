@@ -1,26 +1,62 @@
 import React, { Component } from "react";
-import { Box, Card, CardContent, CardHeader, CardActions, TextField, Container, Avatar, ListItem, Grid } from "@material-ui/core";
-import { Favorite, Comment } from "@material-ui/icons";
+import { Box, Card, CardContent, CardHeader, CardActions, Container, Avatar, ListItem, Grid, Tooltip, TextField } from "@material-ui/core";
+import { Favorite, Comment, Delete, VpnKey } from "@material-ui/icons";
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      editMode: true
+    };
+  }
+
+  editMode(e) {
+    this.setState({
+      editMode: false
+    });
+  }
   render() {
     return (
       <div>
         <Box>
           <Card>
             <Container>
-              <CardHeader title="Post Title" subheader="Username" align="left" avatar={<Avatar alt="Remy Sharp" style={{ background: "red" }} />} />
-              <CardContent>Hello World</CardContent>
+              <CardHeader subheader="Username" align="left" avatar={<Avatar alt="Remy Sharp" style={{ background: "#465881" }} />} />
+              {this.state.onEdit ? <CardContent>Hello World!</CardContent> : <TextField id="standard-basic" fullWidth label="Standard" />}
+
               <CardActions>
+                <Grid container>
+                  {/*Like Icon */}
+                  <Grid item={true}>
+                    <Tooltip title="1 like">
+                      <ListItem button>
+                        <Favorite />
+                      </ListItem>
+                    </Tooltip>
+                  </Grid>
+                  {/*Comment Icon */}
+                  <Grid item={true}>
+                    <Tooltip title="1 Comment">
+                      <ListItem button>
+                        <Comment />
+                      </ListItem>
+                    </Tooltip>
+                  </Grid>
+                </Grid>
+                {/* Action Buttons */}
+
                 <Grid>
-                  <Grid item="true">
+                  {/*Delete ActionButton */}
+                  <Grid item={true}>
                     <ListItem button>
-                      <Favorite />
+                      <Delete />
                     </ListItem>
                   </Grid>
-                  <Grid item="true">
+                  {/*Edit Action Button */}
+                  <Grid item={true}>
                     <ListItem button>
-                      <Comment />
+                      <VpnKey onClick={this.editMode} />
                     </ListItem>
                   </Grid>
                 </Grid>

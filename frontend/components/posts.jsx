@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
 import actions from "../redux/actions";
-
+import Post from "./posts/post";
 import CreatePost from "./posts/createPost";
 
 class Posts extends Component {
@@ -17,9 +17,16 @@ class Posts extends Component {
   render() {
     return (
       <div>
-        <Box>
-          <CreatePost />
-        </Box>
+        {!!this.props.auth.token ? (
+          <Box align="center" style={{ borderRight: "1px solid gray", borderLeft: "1px solid gray", padding: "10px" }}>
+            <CreatePost />
+            <Box mt={5} width="0.8">
+              <Post />
+            </Box>
+          </Box>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

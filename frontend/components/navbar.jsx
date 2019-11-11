@@ -15,6 +15,11 @@ import actions from "../redux/actions";
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.signOut = this.signOut.bind(this);
+  }
+  signOut(e) {
+    e.preventDefault();
+    this.props.deauthenticate();
   }
   static getInitialProps(ctx) {
     initialize(ctx);
@@ -49,7 +54,15 @@ class Navbar extends Component {
               </Grid>
             </Box>
           ) : (
-            ""
+            <Box ml="auto">
+              <Button
+                variant="contained"
+                onClick={this.signOut}
+                color="secondary"
+              >
+                Login
+              </Button>
+            </Box>
           )}
         </Toolbar>
       </AppBar>

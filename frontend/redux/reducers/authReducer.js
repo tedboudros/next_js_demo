@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     case USER:
       return Object.assign({}, state, { user: action.payload });
     case DEAUTHENTICATE:
-      return { token: null };
+      return { token: null,  };
     default:
       return state;
   }

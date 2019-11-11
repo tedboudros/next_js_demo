@@ -27,7 +27,7 @@ class Navbar extends Component {
               <Grid container spacing={1}>
                 <Grid item={true}>
                   <Link href="/signin">
-                    <Button variant="contained" color="primary">
+                    <Button variant="contained" color="secondary">
                       Login
                     </Button>
                   </Link>

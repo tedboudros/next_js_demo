@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Drawer, AppBar, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText, Box, Button } from "@material-ui/core";
-import { Create, Home, Lock } from "@material-ui/icons";
+import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, Box, Button } from "@material-ui/core";
+import { Home, Lock, Settings } from "@material-ui/icons";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
 import actions from "../redux/actions";
@@ -36,18 +36,18 @@ class Sidebar extends Component {
                 {/*Settings Icon */}
                 <ListItem button>
                   <ListItemIcon>
-                    <Create />
+                    <Settings />
                   </ListItemIcon>
                   <ListItemText primary="Settings" />
                 </ListItem>
+                {/*Logout Button*/}
+                <ListItem onClick={this.signOut} button>
+                  <ListItemIcon>
+                    <Lock />
+                  </ListItemIcon>
+                  <ListItemText primary="Logout" />
+                </ListItem>
               </List>
-              {/*Logout Button*/}
-              <ListItem onClick={this.signOut} button>
-                <ListItemIcon>
-                  <Lock />
-                </ListItemIcon>
-                <ListItemText primary="Logout" />
-              </ListItem>
             </Box>
           </Drawer>
         ) : (

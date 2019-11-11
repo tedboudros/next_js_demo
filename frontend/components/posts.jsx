@@ -18,10 +18,10 @@ class Posts extends Component {
     return (
       <div>
         {!!this.props.auth.token ? (
-          <Box align="center" style={{ borderRight: "1px solid gray", borderLeft: "1px solid gray", padding: "10px" }}>
+          <Box align="center" mt={10} style={{ padding: "10px" }}>
             <CreatePost />
-            <Box mt={5} width="0.8">
-              <Post />
+            <Box mt={5}>
+              <Post post_content="Fuck you" j />
             </Box>
           </Box>
         ) : (

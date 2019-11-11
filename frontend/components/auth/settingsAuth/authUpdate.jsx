@@ -1,4 +1,14 @@
-import { TextField, Box, Card, CardContent, CardHeader, Button, Container, FormControl, Link } from "@material-ui/core";
+import {
+  TextField,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+  Container,
+  FormControl,
+  Link
+} from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../../../utils/initialize";
@@ -12,6 +22,7 @@ class AuthUpdate extends Component {
     this.onChange = this.onChange.bind(this);
 
     this.state = {
+      username: "",
       password: "",
       email: ""
     };
@@ -42,31 +53,59 @@ class AuthUpdate extends Component {
             <Container>
               {/*Card Header*/}
               <Box mt={5}>
-                <CardHeader align="center" title="Update your account credentials" subheader="Be creative" />
+                <CardHeader
+                  align="center"
+                  title="Update your account credentials"
+                  subheader="Be creative"
+                />
               </Box>
 
               {/*Card Content*/}
               <CardContent>
                 <Box p={1}>
                   <FormControl fullWidth>
-                    <TextField label="New username..." variant="filled" color="secondary" name="username" type="text" onChange={this.onChange} />
+                    <TextField
+                      label="New username..."
+                      variant="filled"
+                      color="secondary"
+                      name="username"
+                      type="text"
+                      onChange={this.onChange}
+                    />
                   </FormControl>
                 </Box>
                 <Box>
                   <Box p={1}>
                     <FormControl fullWidth>
-                      <TextField label="New pmail..." variant="filled" color="secondary" name="email" onChange={this.onChange} />
+                      <TextField
+                        label="New email..."
+                        variant="filled"
+                        color="secondary"
+                        name="email"
+                        onChange={this.onChange}
+                      />
                     </FormControl>
                   </Box>
                   <Box p={1}>
                     <FormControl fullWidth>
-                      <TextField label="New password..." variant="filled" color="secondary" name="password" type="password" onChange={this.onChange} />
+                      <TextField
+                        label="New password..."
+                        variant="filled"
+                        color="secondary"
+                        name="password"
+                        type="password"
+                        onChange={this.onChange}
+                      />
                     </FormControl>
                   </Box>
                 </Box>
 
                 <Box m={1} mt={10} align="right">
-                  <Button variant="contained" onClick={this.onSubmit} color="primary">
+                  <Button
+                    variant="contained"
+                    onClick={this.onSubmit}
+                    color="primary"
+                  >
                     Update Credentials
                   </Button>
                 </Box>

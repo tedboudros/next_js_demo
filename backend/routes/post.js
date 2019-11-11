@@ -45,14 +45,14 @@ router.post("/all/", (req, res) => {
               .json({ message: "Error while fetching post data." });
           } else {
             if (posts) {
-              res.json(posts);
+              res.json({ posts });
             } else {
               res.status(400).json({ message: "Post does not exist." });
             }
           }
         });
       } else {
-        res.status(400).json({ message: "Invalid token." });
+        res.status(401).json({ message: "Invalid token." });
       }
     });
   });

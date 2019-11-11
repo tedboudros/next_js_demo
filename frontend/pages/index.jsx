@@ -20,5 +20,4 @@ class Index extends Component {
 Index.getInitialProps = function(ctx) {
   initialize(ctx);
 };
-
 export default connect(state => state)(Index);

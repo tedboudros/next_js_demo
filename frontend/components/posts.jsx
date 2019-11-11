@@ -13,16 +13,26 @@ class Posts extends Component {
   static getInitialProps(ctx) {
     initialize(ctx);
   }
-
+  componentDidMount() {
+    if (!!this.props.auth.token)
+      this.props.allPosts({ token: this.props.auth.token }, "all");
+  }
   render() {
     return (
       <div>
         {!!this.props.auth.token ? (
           <Box align="center" mt={10} style={{ padding: "10px" }}>
             <CreatePost />
-            <Box mt={5}>
-              <Post post_content="Fuck you" j />
-            </Box>
+
+            {!!this.props.post.posts
+              ? this.props.post.posts.map(post => (
+                  <div key={post.id}>
+                    <Box mt={5}>
+                      <Post post_content={post.content} />
+                    </Box>
+                  </div>
+                ))
+              : ""}
           </Box>
         ) : (
           ""
@@ -31,4 +41,5 @@ class Posts extends Component {
     );
   }
 }
+
 export default connect(state => state, actions)(Posts);

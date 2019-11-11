@@ -14,8 +14,6 @@ const Layout = props => (
   </div>
 );
 
-const mapStateToProps = state => ({
-  isAuthenticated: !!state.auth.token
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps, actions)(Layout);

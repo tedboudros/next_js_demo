@@ -11,9 +11,7 @@ export default function(ctx) {
     const token = ctx.store.getState().auth.token;
 
     if (token && (ctx.pathname === "/signin" || ctx.pathname === "/signup")) {
-      setTimeout(function() {
-        Router.push("/");
-      }, 0);
+      Router.push("/");
     }
   }
 }

@@ -1,4 +1,4 @@
 import authActions from "./authActions";
-import addPost from "./createPost";
+import postActions from "./postActions";
 
-export default { ...authActions };
+export default { ...authActions, ...postActions };

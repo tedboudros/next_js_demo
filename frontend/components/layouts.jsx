@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 import LayoutDrafts from "./LayoutDrafts";
 import { connect } from "react-redux";
 import actions from "../redux/actions";
-import { Box } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 
 const Layout = props => (
   <div>

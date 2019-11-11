@@ -29,14 +29,14 @@ class Navbar extends Component {
           {!this.props.isAuthenticated ? (
             <Box ml="auto">
               <Grid container spacing={1}>
-                <Grid item>
+                <Grid item="true">
                   <Link href="/signin">
                     <Button variant="contained" color="secondary">
                       Login
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item>
+                <Grid item="true" value="true">
                   <Link href="/signup">
                     <Button variant="contained" color="secondary">
                       Register

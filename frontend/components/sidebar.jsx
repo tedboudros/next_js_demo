@@ -21,7 +21,7 @@ class Sidebar extends Component {
     return (
       <div>
         {!!this.props.auth.token ? (
-          <Drawer style={{ width: "240px" }} variant="permanent">
+          <Drawer style={{ width: "240px" }} color="primary" variant="permanent">
             <div style={{ width: "240px" }} />
 
             <Divider />

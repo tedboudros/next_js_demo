@@ -35,7 +35,7 @@ class Post extends Component {
         <Box>
           <Card>
             <Container>
-              <CardHeader subheader="Username" align="left" avatar={<Avatar alt="Remy Sharp" style={{ background: "#465881" }} />} />
+              <CardHeader subheader="Username" align="left" avatar={<Avatar alt="Remy Sharp" style={{ background: "#231F20" }} />} />
               <CardContent>{this.state.editMode ? this.state.content : <TextField id="standard-basic" onChange={this.onChange} value={this.state.content} fullWidth label="Standard" />}</CardContent>
               <CardActions>
                 <Grid container>
@@ -55,8 +55,8 @@ class Post extends Component {
                   </Grid>
                   {/*Edit Action Button */}
                   <Grid item={true}>
-                    <ListItem button>
-                      <Create onClick={this.editMode} />
+                    <ListItem button onClick={this.editMode}>
+                      <Create />
                     </ListItem>
                   </Grid>
                 </Grid>

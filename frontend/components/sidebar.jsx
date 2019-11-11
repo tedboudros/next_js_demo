@@ -4,6 +4,7 @@ import { Home, Lock, Settings } from "@material-ui/icons";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
 import actions from "../redux/actions";
+import Link from "next/link";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -38,7 +39,10 @@ class Sidebar extends Component {
                   <ListItemIcon>
                     <Settings />
                   </ListItemIcon>
-                  <ListItemText primary="Settings" />
+
+                  <Link href="/settings">
+                    <ListItemText primary="Settings" />
+                  </Link>
                 </ListItem>
                 {/*Logout Button*/}
                 <ListItem onClick={this.signOut} button>

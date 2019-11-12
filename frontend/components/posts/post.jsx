@@ -12,8 +12,14 @@ import {
   Tooltip,
   TextField,
   Fab,
-  Typography
+  Typography,
+  IconButton,
+  Icon
 } from "@material-ui/core";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { Favorite, Delete, Create } from "@material-ui/icons";
 import { connect } from "react-redux";
 import initialize from "../../utils/initialize";
@@ -79,80 +85,75 @@ class Post extends Component {
   render() {
     return (
       <div>
-        <Box>
-          <Card>
-            <Container>
-              <CardHeader
-                subheader={this.props.post_info.username}
-                align="left"
-                avatar={
-                  <Avatar
-                    alt="Remy Sharp"
-                    style={
-                      this.props.post_info.user === this.props.auth.user.id
-                        ? { background: "#465881" }
-                        : { background: "#231F20" }
-                    }
-                  />
+        <Card>
+          <CardHeader
+            avatar={
+              <Avatar
+                style={
+                  this.props.post_info.user === this.props.auth.user.id
+                    ? { background: "#465881" }
+                    : { background: "#ccc" }
                 }
+                aria-label="recipe"
+              >
+                {this.props.post_info.username.charAt(0)}
+              </Avatar>
+            }
+            action={<Box style={{ marginLeft: "60px" }}></Box>}
+            title={this.props.post_info.username}
+            subheader={
+              new Date(this.props.post_info.createdAt).getDate() +
+              " / " +
+              new Date(this.props.post_info.createdAt).getMonth() +
+              " / " +
+              new Date(this.props.post_info.createdAt).getFullYear()
+            }
+          />
+          <CardContent>
+            {this.state.editMode ? (
+              <Typography variant="body2" color="textPrimary" component="h3">
+                {this.state.content}
+              </Typography>
+            ) : (
+              <TextField
+                id="standard-basic"
+                onChange={this.onChange}
+                value={this.state.content}
+                fullWidth
+                label="Editing post:"
               />
-              <CardContent>
-                {this.state.editMode ? (
-                  this.state.content
-                ) : (
-                  <Box>
-                    <TextField
-                      id="standard-basic"
-                      onChange={this.onChange}
-                      value={this.state.content}
-                      fullWidth
-                      label="Standard"
-                    />
-                  </Box>
-                )}
-              </CardContent>
-              <CardActions>
-                {this.props.post_info.user === this.props.auth.user.id ? (
-                  <Grid container>
-                    {/*Like Icon */}
-                    <Grid item={true}>
-                      <Tooltip title={`${this.state.likes}  likes`}>
-                        <ListItem onClick={this.likePost} button>
-                          <Favorite />
-                        </ListItem>
-                      </Tooltip>
-                    </Grid>
-                    <Grid item={true}>
-                      <ListItem button onClick={this.deletePost}>
-                        <Delete />
-                      </ListItem>
-                    </Grid>
-                    <Grid item={true}>
-                      <ListItem button onClick={this.editMode}>
-                        <Create />
-                      </ListItem>
-                    </Grid>
-                  </Grid>
-                ) : (
-                  <Grid container>
-                    {/*Like Icon */}
-                    <Grid item={true}>
-                      <Tooltip
-                        onClick={this.likePost}
-                        title={`${this.state.likes} likes`}
-                      >
-                        <ListItem button>
-                          <Favorite />
-                        </ListItem>
-                      </Tooltip>
-                    </Grid>
-                  </Grid>
-                )}
-                {/* Action Buttons */}
-              </CardActions>
-            </Container>
-          </Card>
-        </Box>
+            )}
+          </CardContent>
+          <CardActions disableSpacing>
+            <Typography
+              style={{ marginLeft: "20px" }}
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              {this.state.likes}
+            </Typography>
+            <IconButton onClick={this.likePost} aria-label="Like">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="Share">
+              <ShareIcon />
+            </IconButton>
+
+            {this.props.post_info.user === this.props.auth.user.id ? (
+              <Box ml="auto">
+                <IconButton aria-label="Share" onClick={this.editMode}>
+                  <Create />
+                </IconButton>
+                <IconButton aria-label="Share" onClick={this.deletePost}>
+                  <Delete />
+                </IconButton>
+              </Box>
+            ) : (
+              ""
+            )}
+          </CardActions>
+        </Card>
       </div>
     );
   }

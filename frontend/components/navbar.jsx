@@ -20,8 +20,7 @@ const useStyles = makeStyles({
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
     border: 0,
     borderRadius: 3,
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-    color: "white",
+    color: "black",
     height: 48,
     padding: "0 30px"
   }
@@ -40,7 +39,14 @@ class Navbar extends Component {
   }
   render() {
     return (
-      <AppBar style={{ zIndex: 1000000 }}>
+      <AppBar
+        style={{
+          boxShadow: "none",
+          borderBottom: "1px solid rgba(0,0,0,0.12)",
+          zIndex: 1000000
+        }}
+        color="default"
+      >
         <Toolbar>
           <Box>
             <Typography variant="h6">Forum.io</Typography>

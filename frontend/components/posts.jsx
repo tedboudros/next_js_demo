@@ -28,7 +28,7 @@ class Posts extends Component {
             <CreatePost />
 
             {!!this.props.post.posts
-              ? this.props.post.posts.map(_post => (
+              ? this.props.post.posts.reverse().map(_post => (
                   <div key={_post._id}>
                     <Box mt={5}>
                       <Post post_info={_post} />

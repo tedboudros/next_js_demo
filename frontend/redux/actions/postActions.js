@@ -31,7 +31,7 @@ const addPost = ({ token, content }, type) => {
       });
   };
 };
-//type PROPERTY will be postID
+
 //DELETE POST
 const deletePost = ({ token, id }, type) => {
   if (type !== "delete") {
@@ -41,7 +41,7 @@ const deletePost = ({ token, id }, type) => {
     axios
       .post(`${API}/${type}`, { token, id })
       .then(response => {
-        Router.push("/?deleted");
+        Router.push("/");
       })
       .catch(error => {
         if (error.message) {

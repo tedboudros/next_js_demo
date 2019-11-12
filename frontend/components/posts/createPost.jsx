@@ -9,10 +9,12 @@ import {
   TextField,
   Container,
   Avatar,
-  Fab
+  Fab,
+  CardActions,
+  IconButton
 } from "@material-ui/core";
 import initialize from "../../utils/initialize";
-import { Navigation, Settings } from "@material-ui/icons";
+import { ArrowRightAlt } from "@material-ui/icons";
 
 class CreatePost extends Component {
   constructor(props) {
@@ -46,48 +48,36 @@ class CreatePost extends Component {
   render() {
     return (
       <div>
-        <Box width={1} alignContent="center">
-          <Card>
-            <Container>
-              <CardHeader
-                align="left"
-                avatar={
-                  <Avatar alt="Remy Sharp" style={{ background: "#465881" }} />
-                }
-                title={this.props.auth.user.username}
-              />
-              <CardContent>
-                <Box>
-                  <TextField
-                    width={1}
-                    name="content"
-                    value={this.state.content}
-                    onChange={this.onChange}
-                    fullWidth
-                    id="standard-textarea"
-                    label="What are you thinking..."
-                    placeholder="Describe to the world what you're thinking!"
-                    multiline
-                    variant="standard"
-                  />
-                </Box>
-                <Box mt={2} align="right">
-                  {/* Post Action Buttons */}
-                  <Fab
-                    onClick={this.onSubmit}
-                    variant="extended"
-                    size="small"
-                    color="primary"
-                    aria-label="add"
-                  >
-                    <Navigation />
-                    Post
-                  </Fab>
-                </Box>
-              </CardContent>
-            </Container>
-          </Card>
-        </Box>
+        <Card>
+          <CardHeader
+            avatar={
+              <Avatar style={{ background: "#465881" }} aria-label="recipe">
+                {this.props.auth.user.username.charAt(0)}
+              </Avatar>
+            }
+          />
+          <CardContent>
+            <TextField
+              width={1}
+              name="content"
+              value={this.state.content}
+              onChange={this.onChange}
+              fullWidth
+              id="standard-textarea"
+              label="What are you thinking..."
+              placeholder="Describe to the world what you're thinking!"
+              multiline
+              variant="standard"
+            />
+          </CardContent>
+          <CardActions disableSpacing>
+            <Box ml="auto">
+              <IconButton onClick={this.onSubmit}>
+                <ArrowRightAlt />
+              </IconButton>
+            </Box>
+          </CardActions>
+        </Card>
       </div>
     );
   }

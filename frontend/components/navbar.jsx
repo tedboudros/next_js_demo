@@ -68,9 +68,9 @@ class Navbar extends Component {
             </Box>
           ) : (
             <Box ml="auto">
-              <Typography variant="p">
+              <p style={{ display: "inline" }}>
                 {this.props.auth.user.username}
-              </Typography>
+              </p>
               <IconButton onClick={this.signOut}>
                 <LockOpen />
               </IconButton>

@@ -22,7 +22,6 @@ class AuthUpdate extends Component {
     this.onChange = this.onChange.bind(this);
 
     this.state = {
-      username: "",
       password: "",
       email: ""
     };
@@ -37,12 +36,13 @@ class AuthUpdate extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    this.props.authenticate(
+    this.props.changeUserInfo(
       {
+        token: this.props.auth.token,
         email: this.state.email,
         password: this.state.password
       },
-      "login"
+      "update"
     );
   }
   render() {
@@ -56,24 +56,11 @@ class AuthUpdate extends Component {
                 <CardHeader
                   align="center"
                   title="Update your account credentials"
-                  subheader="Be creative"
                 />
               </Box>
 
               {/*Card Content*/}
               <CardContent>
-                <Box p={1}>
-                  <FormControl fullWidth>
-                    <TextField
-                      label="New username..."
-                      variant="filled"
-                      color="secondary"
-                      name="username"
-                      type="text"
-                      onChange={this.onChange}
-                    />
-                  </FormControl>
-                </Box>
                 <Box>
                   <Box p={1}>
                     <FormControl fullWidth>

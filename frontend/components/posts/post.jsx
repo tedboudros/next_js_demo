@@ -136,10 +136,6 @@ class Post extends Component {
             <IconButton onClick={this.likePost} aria-label="Like">
               <FavoriteIcon />
             </IconButton>
-            <IconButton aria-label="Share">
-              <ShareIcon />
-            </IconButton>
-
             {this.props.post_info.user === this.props.auth.user.id ? (
               <Box ml="auto">
                 <IconButton aria-label="Share" onClick={this.editMode}>

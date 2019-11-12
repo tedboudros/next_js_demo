@@ -66,6 +66,33 @@ const authenticate = ({ email, password }, type) => {
       });
   };
 };
+const changeUserInfo = ({ token, email, password }, type) => {
+  if (type !== "update") {
+    throw new Error("Wrong API call!");
+  }
+  return dispatch => {
+    axios
+      .post(`${API}/${type}`, { token, email, password })
+      .then(response => {
+        Router.push("/");
+      })
+      .catch(error => {
+        if (error.response) {
+          switch (error.response.status) {
+            case 400:
+              alert(error.response.data.message);
+              break;
+            case 500:
+              alert("Interval server error! Try again!");
+              break;
+            default:
+              alert(error.response.data.message);
+              break;
+          }
+        }
+      });
+  };
+};
 
 // gets the token from the cookie and saves it in the store
 const reauthenticate = auth => {
@@ -89,5 +116,6 @@ export default {
   register,
   authenticate,
   reauthenticate,
-  deauthenticate
+  deauthenticate,
+  changeUserInfo
 };

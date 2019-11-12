@@ -52,43 +52,46 @@ router.post("/register/", (req, res) => {
 });
 
 // UPDATE USER CREDENTIALS
-router.post("/update/:id", (req, res) => {
-  User.getUserById(req.params.id, (err, user) => {
-    if (err) {
-      console.error(err);
-      res.status(400).json({ message: "Error while fetching user info" });
-    } else {
-      /* Generates password hash beforehand because it can't be done inline with the user.save() due to async js --__-- */
-      bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(req.body.password, salt, function(err, hash) {
-          /* If fields are different, it changes them accordingly then saves */
-          if (req.body.username !== user.username)
-            user.username = req.body.username;
+router.post("/update/", (req, res) => {
+  jwt.verify(req.body.token, jwtSecret, (err, decoded) => {
+    if (err) throw err;
+    User.getUserById(decoded.id, (err, user) => {
+      if (err) throw err;
+      if (user) {
+        if (err) {
+          console.error(err);
+          res.status(400).json({ message: "Error while fetching user info" });
+        } else {
+          /* Generates password hash beforehand because it can't be done inline with the user.save() due to async js --__-- */
+          bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(req.body.password, salt, function(err, hash) {
+              /* If fields are different, it changes them accordingly then saves */
 
-          if (req.body.email !== user.email) user.email = req.body.email;
+              if (req.body.email !== "") user.email = req.body.email;
 
-          if (req.body.name !== user.name) user.name = req.body.name;
-
-          if (req.body.password !== user.password) {
-            /* Hashes new password */
-            user.password = hash;
-          }
-          /* After all the changes it saves them */
-          user
-            .save()
-            .then(cb => {
-              res.status(200).json({});
-            })
-            .catch(err => {
-              if (err) throw err;
-              res.status(400).json({
-                error: true,
-                message: "Error when saving user changes"
-              });
+              if (req.body.password !== "") {
+                user.password = hash;
+              }
+              /* After all the changes it saves them */
+              user
+                .save()
+                .then(cb => {
+                  res.status(200).json({});
+                })
+                .catch(err => {
+                  if (err) throw err;
+                  res.status(400).json({
+                    error: true,
+                    message: "Error when saving user changes"
+                  });
+                });
             });
-        });
-      });
-    }
+          });
+        }
+      } else {
+        res.status(400).json({ message: "Invalid token." });
+      }
+    });
   });
 });
 

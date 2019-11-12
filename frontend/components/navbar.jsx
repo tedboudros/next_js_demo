@@ -1,4 +1,13 @@
-import { Typography, AppBar, Toolbar, Button, Box, Grid, Link, Fab } from "@material-ui/core";
+import {
+  Typography,
+  AppBar,
+  Toolbar,
+  Button,
+  Box,
+  Grid,
+  Link,
+  Fab
+} from "@material-ui/core";
 import { Navigation, Lock } from "@material-ui/icons";
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -23,6 +32,7 @@ class Navbar extends Component {
           <Box>
             <Typography variant="h6">Forum.io</Typography>
           </Box>
+          {/*IF STATEMENT TO HIDE AUTHENTICATION   */}
           {!this.props.auth.token ? (
             <Box ml="auto">
               <Grid container spacing={1}>
@@ -41,7 +51,13 @@ class Navbar extends Component {
                   </Link>
                 </Grid>
                 <Grid item={true} value="true">
-                  <Fab variant="extended" size="small" color="third" aria-label="add" style={{ padding: "5px" }}>
+                  <Fab
+                    variant="extended"
+                    size="small"
+                    color="third"
+                    aria-label="add"
+                    style={{ padding: "5px" }}
+                  >
                     <Lock />
                     Login
                   </Fab>

@@ -18,7 +18,6 @@ import actions from "../../redux/actions";
 class Register_Form extends Component {
   constructor(props) {
     super(props);
-
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
 
@@ -31,6 +30,7 @@ class Register_Form extends Component {
   static getInitialProps(ctx) {
     initialize(ctx);
   }
+
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -109,7 +109,7 @@ class Register_Form extends Component {
                     />
                   </FormControl>
                 </Box>
-
+                {/*REGISTER BUTTON*/}
                 <Box m={1} mt={10} align="right">
                   <Button
                     variant="contained"

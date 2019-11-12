@@ -20,6 +20,7 @@ class Posts extends Component {
   render() {
     return (
       <div>
+        {/*IF STATEMENT TO VERIFY AUTHENTICATION || MAP ALL POSTS*/}
         {!!this.props.auth.token ? (
           <Box align="center" mt={10} style={{ padding: "10px" }}>
             <CreatePost />

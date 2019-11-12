@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Drawer, List, Divider, ListItem, ListItemIcon, ListItemText, Box, Button } from "@material-ui/core";
+import {
+  Drawer,
+  List,
+  Divider,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Box,
+  Button
+} from "@material-ui/core";
 import { Home, Lock, Settings } from "@material-ui/icons";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
@@ -21,13 +30,17 @@ class Sidebar extends Component {
     return (
       <div>
         {!!this.props.auth.token ? (
-          <Drawer style={{ width: "240px" }} color="primary" variant="permanent">
+          <Drawer
+            style={{ width: "240px" }}
+            color="primary"
+            variant="permanent"
+          >
             <div style={{ width: "240px" }} />
 
             <Divider />
             <Box mt={10}>
-              {/*Home Page Icon */}
               <List>
+                {/*Home Page Icon */}
                 <ListItem button>
                   <ListItemIcon>
                     <Home />
@@ -41,7 +54,6 @@ class Sidebar extends Component {
                   <ListItemIcon>
                     <Settings />
                   </ListItemIcon>
-
                   <Link href="/settings">
                     <ListItemText primary="Settings" />
                   </Link>

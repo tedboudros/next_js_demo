@@ -5,6 +5,7 @@ var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 var jwtSecret = require("../config").jwtSecret;
 
+// GET USER
 router.get("/:id", (req, res) => {
   User.getUserById(req.params.id, (err, user) => {
     if (err) {
@@ -20,6 +21,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
+// REGISTER USER
 router.post("/register/", (req, res) => {
   let newUser = User(req.body);
   /* Gets user by username to check for existing username. If none found, it continues */
@@ -49,6 +51,7 @@ router.post("/register/", (req, res) => {
   });
 });
 
+// UPDATE USER CREDENTIALS
 router.post("/update/:id", (req, res) => {
   User.getUserById(req.params.id, (err, user) => {
     if (err) {
@@ -89,6 +92,7 @@ router.post("/update/:id", (req, res) => {
   });
 });
 
+// USER LOGIN
 router.post("/login/", (req, res) => {
   /* Gets user by email */
   User.getUserByEmail(req.body.email, (err, user) => {

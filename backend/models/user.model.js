@@ -20,6 +20,7 @@ UserSchema.set("timestamps", true);
 
 const User = (module.exports = mongoose.model("User", UserSchema));
 
+// USERS ACTIONS ON EXPORT
 module.exports.createUser = (newUser, callback) => {
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;

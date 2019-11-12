@@ -32,6 +32,7 @@ class Navbar extends Component {
           <Box>
             <Typography variant="h6">Forum.io</Typography>
           </Box>
+          {/*IF STATEMENT TO HIDE AUTHENTICATION   */}
           {!this.props.auth.token ? (
             <Box ml="auto">
               <Grid container spacing={1}>

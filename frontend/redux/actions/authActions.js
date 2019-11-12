@@ -81,6 +81,7 @@ const deauthenticate = () => {
   };
 };
 
+// GETS USER FROM MONGODB
 const getUser = ({ token }, type) => {
   console.log(token);
   return dispatch => {

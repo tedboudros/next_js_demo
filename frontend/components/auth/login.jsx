@@ -17,7 +17,6 @@ import actions from "../../redux/actions";
 class Login_Form extends Component {
   constructor(props) {
     super(props);
-
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
 

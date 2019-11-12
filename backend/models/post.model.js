@@ -17,6 +17,7 @@ PostSchema.set("timestamps", true);
 
 const Post = (module.exports = mongoose.model("Post", PostSchema));
 
+// POST EXPORT ACTIONS
 module.exports.createPost = (newPost, callback) => {
   newPost.save(callback);
 };

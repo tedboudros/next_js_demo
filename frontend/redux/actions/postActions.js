@@ -60,14 +60,15 @@ const deletePost = ({ token, id }, type) => {
       });
   };
 };
-//UPDATES POST
-const changePost = ({ token, content }, type) => {
+
+const changePost = ({ token, content, id }, type) => {
+  if (type !== "change") {
+    throw new Error("Wrong API call!");
+  }
   return dispatch => {
     axios
-      .post(`${API}/${type}`, { token, content })
-      .then(response => {
-        Router.push("/");
-      })
+      .post(`${API}/${type}`, { token, content, id })
+      .then(response => {})
       .catch(error => {
         if (error.message) {
           switch (error.response.status) {

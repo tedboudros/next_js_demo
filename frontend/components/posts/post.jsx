@@ -30,7 +30,6 @@ class Post extends Component {
     };
     this.editMode = this.editMode.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
     this.deletePost = this.deletePost.bind(this);
     this.likePost = this.likePost.bind(this);
   }
@@ -41,6 +40,17 @@ class Post extends Component {
     this.setState({
       editMode: !this.state.editMode
     });
+    if (this.state.editMode == false) {
+      this.props.changePost(
+        {
+          token: this.props.auth.token,
+          content: this.state.content,
+          id: this.props.post_info._id
+        },
+        "change"
+      );
+      this.setState({ content: this.state.content });
+    }
   }
   onChange(e) {
     this.setState({
@@ -57,15 +67,6 @@ class Post extends Component {
       },
       "like"
     );
-  }
-  // changes the content of post || ( δεν έχω περάσει το id και δεν δουλεύει )
-  onSubmit(e) {
-    e.preventDefault();
-    this.props.changePost(
-      { token: this.props.auth.token, content: this.state.content },
-      "change"
-    );
-    this.setState({ content: this.props.post.post_content });
   }
   //delete POST || ( δεν έχω περάσει το id και δεν δουλεύει )
   deletePost(e) {

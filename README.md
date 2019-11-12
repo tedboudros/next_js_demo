@@ -1,5 +1,9 @@
 # Next.JS Demo
 
+## Requirements
+
+MongoDB
+
 ## Installation
 
 Installation is as simple cloning the repo and then running the npm install command on both of the directories!

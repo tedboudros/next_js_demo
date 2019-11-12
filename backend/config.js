@@ -1,1 +1,1 @@
-module.exports.jwtSecret = "forum.io-_-";
+module.exports.jwtSecret = "forum.io;)";

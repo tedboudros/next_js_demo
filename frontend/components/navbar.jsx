@@ -67,18 +67,6 @@ class Navbar extends Component {
                     </Button>
                   </Link>
                 </Grid>
-                <Grid item={true} value="true">
-                  <Fab
-                    variant="extended"
-                    size="small"
-                    color="third"
-                    aria-label="add"
-                    style={{ padding: "5px" }}
-                  >
-                    <Lock />
-                    Login
-                  </Fab>
-                </Grid>
               </Grid>
             </Box>
           ) : (

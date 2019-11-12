@@ -60,18 +60,6 @@ class Post extends Component {
     e.preventDefault();
     this.props.changePost({ token: this.props.auth.token }, "delete");
   }
-  // this passes the username to state and appears in post title || now it's hardcoded to username || line 54 subheader="Username"
-  componentDidMount() {
-    if (!!this.props.auth.token)
-      this.props.getUser(
-        { token: this.props.auth.token },
-        "5dc828040aa30b0118511838"
-      );
-  }
-  //like button
-  // componentWillMount() {
-  //   if (!!this.props.auth.token) this.props.addLike({ token: this.props.auth.token }, "like");
-  // }
   render() {
     return (
       <div>
@@ -115,7 +103,7 @@ class Post extends Component {
                 <Grid container>
                   {/*Like Icon */}
                   <Grid item={true}>
-                    <Tooltip title={`${this.state.postLikes} line`}>
+                    <Tooltip title={`${this.props.likes} likes`}>
                       <ListItem button>
                         <Favorite />
                       </ListItem>
@@ -123,7 +111,7 @@ class Post extends Component {
                   </Grid>
                   {/*Delete ActionButton */}
                   <Grid item={true}>
-                    <ListItem button onClic={this.deletePost}>
+                    <ListItem button onClick={this.deletePost}>
                       <Delete />
                     </ListItem>
                   </Grid>

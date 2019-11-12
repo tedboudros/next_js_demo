@@ -9,13 +9,11 @@ import CreatePost from "./posts/createPost";
 class Posts extends Component {
   constructor(props) {
     super(props);
+    if (!!this.props.auth.token)
+      this.props.allPosts({ token: this.props.auth.token }, "all");
   }
   static getInitialProps(ctx) {
     initialize(ctx);
-  }
-  componentDidMount() {
-    if (!!this.props.auth.token)
-      this.props.allPosts({ token: this.props.auth.token }, "all");
   }
   render() {
     return (
@@ -26,9 +24,9 @@ class Posts extends Component {
 
             {!!this.props.post.posts
               ? this.props.post.posts.map(post => (
-                  <div key={post.id}>
+                  <div key={post._id}>
                     <Box mt={5}>
-                      <Post post_content={post.content} />
+                      <Post likes={post.likes} post_content={post.content} />
                     </Box>
                   </div>
                 ))

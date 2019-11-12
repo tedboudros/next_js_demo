@@ -1,4 +1,13 @@
-import { Typography, AppBar, Toolbar, Button, Box, Grid, Link, Fab } from "@material-ui/core";
+import {
+  Typography,
+  AppBar,
+  Toolbar,
+  Button,
+  Box,
+  Grid,
+  Link,
+  Fab
+} from "@material-ui/core";
 import { Navigation, Lock } from "@material-ui/icons";
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -39,12 +48,6 @@ class Navbar extends Component {
                       Register
                     </Button>
                   </Link>
-                </Grid>
-                <Grid item={true} value="true">
-                  <Fab variant="extended" size="small" color="third" aria-label="add" style={{ padding: "5px" }}>
-                    <Lock />
-                    Login
-                  </Fab>
                 </Grid>
               </Grid>
             </Box>

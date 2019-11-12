@@ -32,6 +32,7 @@ class Post extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.deletePost = this.deletePost.bind(this);
+    this.likePost = this.likePost.bind(this);
   }
   static getInitialProps(ctx) {
     initialize(ctx);
@@ -45,6 +46,17 @@ class Post extends Component {
     this.setState({
       content: e.target.value
     });
+  }
+  likePost(e) {
+    e.preventDefault();
+    this.setState({ likes: this.state.likes + 1 });
+    this.props.addLike(
+      {
+        token: this.props.auth.token,
+        id: this.props.post_info._id
+      },
+      "like"
+    );
   }
   // changes the content of post || ( δεν έχω περάσει το id και δεν δουλεύει )
   onSubmit(e) {
@@ -104,7 +116,7 @@ class Post extends Component {
                     {/*Like Icon */}
                     <Grid item={true}>
                       <Tooltip title={`${this.state.likes}  likes`}>
-                        <ListItem button>
+                        <ListItem onClick={this.likePost} button>
                           <Favorite />
                         </ListItem>
                       </Tooltip>
@@ -124,7 +136,10 @@ class Post extends Component {
                   <Grid container>
                     {/*Like Icon */}
                     <Grid item={true}>
-                      <Tooltip title={`${this.state.likes} likes`}>
+                      <Tooltip
+                        onClick={this.likePost}
+                        title={`${this.state.likes} likes`}
+                      >
                         <ListItem button>
                           <Favorite />
                         </ListItem>

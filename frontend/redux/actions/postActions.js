@@ -119,13 +119,15 @@ const allPosts = ({ token }, type) => {
 };
 
 // ADD LIKES
-const addLike = ({ token, postID }, type) => {
-  if (type !== "postLike") {
+const addLike = ({ token, id }, type) => {
+  if (type !== "like") {
     throw new Error("Wrong API call!");
   }
   return dispatch => {
-    axios.post(`${API}/${type}`, { token }).then(response => {
-      dispatch(Router.push("/")).catch(error => {
+    axios
+      .post(`${API}/${type}`, { token, id })
+      .then(response => {})
+      .catch(error => {
         if (error.message) {
           switch (error.response.status) {
             case 400:
@@ -140,8 +142,7 @@ const addLike = ({ token, postID }, type) => {
           }
         }
       });
-    });
   };
 };
 
-export default { addPost, allPosts, changePost, deletePost };
+export default { addPost, allPosts, changePost, deletePost, addLike };

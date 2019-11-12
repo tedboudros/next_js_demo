@@ -18,10 +18,6 @@ import Link from "next/link";
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.signOut = this.signOut.bind(this);
-  }
-  signOut(e) {
-    this.props.deauthenticate();
   }
   static getInitialProps(ctx) {
     initialize(ctx);
@@ -57,13 +53,6 @@ class Sidebar extends Component {
                   <Link href="/settings">
                     <ListItemText primary="Settings" />
                   </Link>
-                </ListItem>
-                {/*Logout Button*/}
-                <ListItem onClick={this.signOut} button>
-                  <ListItemIcon>
-                    <Lock />
-                  </ListItemIcon>
-                  <ListItemText primary="Logout" />
                 </ListItem>
               </List>
             </Box>

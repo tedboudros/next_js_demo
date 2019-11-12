@@ -6,9 +6,10 @@ import {
   Box,
   Grid,
   Link,
-  Fab
+  Fab,
+  IconButton
 } from "@material-ui/core";
-import { Navigation, Lock } from "@material-ui/icons";
+import { AccountCircle, AddCircle, LockOpen } from "@material-ui/icons";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
@@ -54,29 +55,26 @@ class Navbar extends Component {
           {/*IF STATEMENT TO HIDE AUTHENTICATION   */}
           {!this.props.auth.token ? (
             <Box ml="auto">
-              <Grid container spacing={1}>
-                <Grid item={true}>
-                  <Link href="/signin" style={{ textDecoration: "none" }}>
-                    <Button
-                      variant="contained"
-                      color="third"
-                      className={classes.root}
-                    >
-                      Login
-                    </Button>
-                  </Link>
-                </Grid>
-                <Grid item={true} value="true">
-                  <Link href="/signup" style={{ textDecoration: "none" }}>
-                    <Button variant="contained" color="third">
-                      Register
-                    </Button>
-                  </Link>
-                </Grid>
-              </Grid>
+              <Link href="/signin" style={{ textDecoration: "none" }}>
+                <IconButton>
+                  <AccountCircle />
+                </IconButton>
+              </Link>
+              <Link href="/signup" style={{ textDecoration: "none" }}>
+                <IconButton>
+                  <AddCircle />
+                </IconButton>
+              </Link>
             </Box>
           ) : (
-            ""
+            <Box ml="auto">
+              <Typography variant="p">
+                {this.props.auth.user.username}
+              </Typography>
+              <IconButton onClick={this.signOut}>
+                <LockOpen />
+              </IconButton>
+            </Box>
           )}
         </Toolbar>
       </AppBar>

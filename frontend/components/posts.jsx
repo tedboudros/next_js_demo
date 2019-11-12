@@ -1,4 +1,4 @@
-import { Typography, Container, Box } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";

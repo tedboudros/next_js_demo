@@ -2,11 +2,8 @@ import {
   Typography,
   AppBar,
   Toolbar,
-  Button,
   Box,
-  Grid,
   Link,
-  Fab,
   IconButton
 } from "@material-ui/core";
 import { AccountCircle, AddCircle, LockOpen } from "@material-ui/icons";

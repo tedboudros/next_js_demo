@@ -7,8 +7,7 @@ import {
   Container,
   FormControl,
   Card,
-  CardContent,
-  Icon
+  CardContent
 } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";

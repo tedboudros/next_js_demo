@@ -9,7 +9,7 @@ import {
   Box,
   Button
 } from "@material-ui/core";
-import { Home, Lock, Settings } from "@material-ui/icons";
+import { Home, Settings } from "@material-ui/icons";
 import { connect } from "react-redux";
 import initialize from "../utils/initialize";
 import actions from "../redux/actions";

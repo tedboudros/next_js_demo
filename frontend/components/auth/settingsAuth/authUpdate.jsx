@@ -6,8 +6,7 @@ import {
   CardHeader,
   Button,
   Container,
-  FormControl,
-  Link
+  FormControl
 } from "@material-ui/core";
 import React, { Component } from "react";
 import { connect } from "react-redux";

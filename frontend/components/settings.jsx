@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AuthUpdate from "./auth/settingsAuth/authUpdate";
-import { Container, Grid, Box } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 
 class Settings extends Component {
   render() {

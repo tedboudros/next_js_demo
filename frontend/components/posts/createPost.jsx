@@ -7,9 +7,7 @@ import {
   CardContent,
   CardHeader,
   TextField,
-  Container,
   Avatar,
-  Fab,
   CardActions,
   IconButton
 } from "@material-ui/core";
@@ -82,6 +80,4 @@ class CreatePost extends Component {
     );
   }
 }
-
-//export default connect(state => createPost, actions)(CreatePost);
 export default connect(state => state, actions)(CreatePost);

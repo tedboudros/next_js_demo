@@ -15,6 +15,10 @@ class Posts extends Component {
   static getInitialProps(ctx) {
     initialize(ctx);
   }
+  componentDidUpdate() {
+    if (!!this.props.auth.token)
+      this.props.allPosts({ token: this.props.auth.token }, "all");
+  }
   render() {
     return (
       <div>
@@ -24,10 +28,10 @@ class Posts extends Component {
             <CreatePost />
 
             {!!this.props.post.posts
-              ? this.props.post.posts.map(post => (
-                  <div key={post._id}>
+              ? this.props.post.posts.map(_post => (
+                  <div key={_post._id}>
                     <Box mt={5}>
-                      <Post likes={post.likes} post_content={post.content} />
+                      <Post post_info={_post} />
                     </Box>
                   </div>
                 ))

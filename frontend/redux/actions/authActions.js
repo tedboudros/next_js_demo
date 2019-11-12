@@ -1,6 +1,6 @@
 import Router from "next/router";
 import axios from "axios";
-import { AUTHENTICATE, DEAUTHENTICATE, USER } from "../types";
+import { AUTHENTICATE, DEAUTHENTICATE } from "../types";
 const API = "http://localhost:4000/api/user";
 import { setCookie, removeCookie } from "../../utils/cookie";
 
@@ -41,10 +41,12 @@ const authenticate = ({ email, password }, type) => {
       .post(`${API}/${type}`, { email, password })
       .then(response => {
         setCookie("token", response.data.token);
+        setCookie("user_id", response.data.user._id);
+        setCookie("user_name", response.data.user.username);
         Router.push("/");
         dispatch({
           type: AUTHENTICATE,
-          payload: response.data.token
+          payload: response.data
         });
       })
       .catch(error => {
@@ -66,9 +68,9 @@ const authenticate = ({ email, password }, type) => {
 };
 
 // gets the token from the cookie and saves it in the store
-const reauthenticate = token => {
+const reauthenticate = auth => {
   return dispatch => {
-    dispatch({ type: AUTHENTICATE, payload: token });
+    dispatch({ type: AUTHENTICATE, payload: auth });
   };
 };
 
@@ -76,35 +78,10 @@ const reauthenticate = token => {
 const deauthenticate = () => {
   return dispatch => {
     removeCookie("token");
+    removeCookie("user_id");
+    removeCookie("user_name");
     Router.push("/");
     dispatch({ type: DEAUTHENTICATE });
-  };
-};
-
-// GETS USER FROM MONGODB
-const getUser = ({ token }, type) => {
-  console.log(token);
-  return dispatch => {
-    axios
-      .get(`${API}/${type}`)
-      .then(response => {
-        dispatch({ type: USER, payload: response.data.user });
-      })
-      .catch(error => {
-        if (error.response) {
-          switch (error.response.status) {
-            case 400:
-              alert(error.response.data.message);
-              break;
-            case 500:
-              alert("Interval server error! Try again!");
-              break;
-            default:
-              alert(error.response.data.message);
-              break;
-          }
-        }
-      });
   };
 };
 
@@ -112,6 +89,5 @@ export default {
   register,
   authenticate,
   reauthenticate,
-  deauthenticate,
-  getUser
+  deauthenticate
 };

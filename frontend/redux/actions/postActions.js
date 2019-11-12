@@ -33,36 +33,35 @@ const addPost = ({ token, content }, type) => {
 };
 //type PROPERTY will be postID
 //DELETE POST
-const deletePost = ({ token }, type) => {
-  if (type !== "deletePost") {
-    throw new Error("Wrong API call");
+const deletePost = ({ token, id }, type) => {
+  if (type !== "delete") {
+    throw new Error("Wrong API call!");
   }
-  axios
-    .post(`${API}/delete/${type}`, { token })
-    .then(response => {
-      Router.push("/");
-    })
-    .catch(error => {
-      if (error.message) {
-        switch (error.response.status) {
-          case 400:
-            alert(error.response.data.message);
-            break;
-          case 500:
-            alert("Interval server error! Try again!");
-            break;
-          default:
-            alert(error.response.data.message);
-            break;
+  return dispatch => {
+    axios
+      .post(`${API}/${type}`, { token, id })
+      .then(response => {
+        Router.push("/?deleted");
+      })
+      .catch(error => {
+        if (error.message) {
+          switch (error.response.status) {
+            case 400:
+              alert(error.response.data.message);
+              break;
+            case 500:
+              alert("Interval server error! Try again!");
+              break;
+            default:
+              alert(error.response.data.message);
+              break;
+          }
         }
-      }
-    });
+      });
+  };
 };
 //UPDATES POST
 const changePost = ({ token, content }, type) => {
-  if (type !== "change") {
-    throw new Error("Wrong API call");
-  }
   return dispatch => {
     axios
       .post(`${API}/${type}`, { token, content })
@@ -97,7 +96,6 @@ const allPosts = ({ token }, type) => {
       .post(`${API}/${type}`, { token })
       .then(response => {
         dispatch({ type: ALL_POSTS, payload: response.data });
-        Router.push("/");
       })
       .catch(error => {
         if (error.response) {
@@ -146,4 +144,4 @@ const addLike = ({ token, postID }, type) => {
   };
 };
 
-export default { addPost, allPosts, changePost };
+export default { addPost, allPosts, changePost, deletePost };

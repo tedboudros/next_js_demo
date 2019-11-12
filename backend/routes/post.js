@@ -70,6 +70,7 @@ router.post("/add/", (req, res) => {
       if (user) {
         let newPost = Post({
           user: user.id,
+          username: user.username,
           content: req.body.content,
           likes: 0
         });
@@ -89,18 +90,22 @@ router.post("/add/", (req, res) => {
 });
 
 //DELETE POST (JWT VERIFICATION)
-router.post("/delete/:id", (req, res) => {
+router.post("/delete/", (req, res) => {
   jwt.verify(req.body.token, jwtSecret, (err, decoded) => {
     if (err) throw err;
     User.getUserById(decoded.id, (err, user) => {
       if (err) throw err;
       if (user) {
-        Post.removePost(req.body.id, (err, post) => {
+        Post.removePost(req.body.id, err => {
           if (err) {
             console.log(err);
             res.status(400).json({ message: "There was an error." });
+          } else {
+            res.status(200).json({});
           }
         });
+      } else {
+        res.status(401).json({ message: "Invalid token." });
       }
     });
   });

@@ -7,3 +7,6 @@ export const USER = "getUser";
 /*POST TYPES */
 export const ADD_POST = "addPost";
 export const ALL_POSTS = "allPosts";
+export const CHANGE_POST = "changePost";
+export const ADD_LIKE = "addLike";
+export const GET_LIKE = "getLike";

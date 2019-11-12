@@ -14,9 +14,7 @@ router.post("/get/", (req, res) => {
         Post.getPostById(req.body.id, (err, post) => {
           if (err) {
             console.error(err);
-            res
-              .status(400)
-              .json({ message: "Error while fetching post data." });
+            res.status(400).json({ message: "Error while fetching post data." });
           } else {
             if (post) {
               res.json(post);
@@ -40,9 +38,7 @@ router.post("/all/", (req, res) => {
         Post.getAllPosts((err, posts) => {
           if (err) {
             console.error(err);
-            res
-              .status(400)
-              .json({ message: "Error while fetching post data." });
+            res.status(400).json({ message: "Error while fetching post data." });
           } else {
             if (posts) {
               res.json({ posts });
@@ -84,6 +80,23 @@ router.post("/add/", (req, res) => {
   });
 });
 
+router.post("/delete/:id", (req, res) => {
+  jwt.verify(req.body.token, jwtSecret, (err, decoded) => {
+    if (err) throw err;
+    User.getUserById(decoded.id, (err, user) => {
+      if (err) throw err;
+      if (user) {
+        Post.removePost(req.body.id, (err, post) => {
+          if (err) {
+            console.log(err);
+            res.status(400).json({ message: "There was an error." });
+          }
+        });
+      }
+    });
+  });
+});
+// Updates Post
 router.post("/change/", (req, res) => {
   jwt.verify(req.body.token, jwtSecret, (err, decoded) => {
     if (err) throw err;
@@ -93,13 +106,10 @@ router.post("/change/", (req, res) => {
         Post.getPostById(req.body.id, (err, post) => {
           if (err) {
             console.error(err);
-            res
-              .status(400)
-              .json({ message: "Error while fetching post data." });
+            res.status(400).json({ message: "Error while fetching post data." });
           } else {
             if (post.user === user.id) {
-              if (req.body.content !== post.content)
-                post.content = req.body.content;
+              if (req.body.content !== post.content) post.content = req.body.content;
               post
                 .save()
                 .then(cb => {
@@ -107,9 +117,7 @@ router.post("/change/", (req, res) => {
                 })
                 .catch(err => {
                   if (err) throw err;
-                  res
-                    .status(400)
-                    .json({ message: "Error when saving post changes." });
+                  res.status(400).json({ message: "Error when saving post changes." });
                 });
             } else {
               res.status(401).json({ message: "Not authorized" });
@@ -131,9 +139,7 @@ router.post("/like/", (req, res) => {
         Post.getPostById(req.body.id, (err, post) => {
           if (err) {
             console.error(err);
-            res
-              .status(400)
-              .json({ message: "Error while fetching post data." });
+            res.status(400).json({ message: "Error while fetching post data." });
           } else {
             post.likes++;
             post
@@ -143,9 +149,7 @@ router.post("/like/", (req, res) => {
               })
               .catch(err => {
                 if (err) throw err;
-                res
-                  .status(400)
-                  .json({ message: "Error when saving post changes." });
+                res.status(400).json({ message: "Error when saving post changes." });
               });
           }
         });
